@@ -11,7 +11,9 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
 
@@ -55,12 +57,51 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-    public void on_button_click(View view){
+
+    public  void generate_random_number(View view) {
+        EditText editText = this.findViewById(R.id.edittext_number);
 
         TextView tv = this.findViewById(R.id.textView);
         Random R = new Random();
         int number = R.nextInt(6);
         tv.setText(Integer.toString(number));
 
+
+
+
+
+        Random RM = new Random();
+
+
+
+        int num1 = Integer.parseInt(editText.getText().toString()); // user's input being changed from number to integer to be accepted by edit textview
+        int Number = RM.nextInt(num1);
+        editText.setText(Integer.toString(number));
+
+        if ((num1 < 1 || num1 > 6)== true) { // if condition to test is number within range of 1 to 6
+
+
+            Toast.makeText( this, "Error", Toast.LENGTH_SHORT).show();
+
+        }
+        else  {
+
+            Toast.makeText( this, "", Toast.LENGTH_SHORT).show();
+
+        }
+
+
+        if ((editText.getText()==tv.getText()==true)) {
+            editText.setText("Congratulations");
+        }
+        else
+        {
+            editText.setText("Try again");
+        }
+
+
+
+
     }
+
 }
